@@ -1,7 +1,5 @@
 package br.com.caelum.almocotecnicosolid.domain;
 
-import org.hibernate.annotations.Fetch;
-
 import javax.persistence.*;
 
 import static javax.persistence.FetchType.LAZY;

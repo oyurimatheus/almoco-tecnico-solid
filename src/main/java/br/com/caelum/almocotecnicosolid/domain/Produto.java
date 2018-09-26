@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-@Entity
+@Entity @Table(name = "produtos")
 public class Produto {
 
     @Id

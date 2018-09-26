@@ -8,7 +8,7 @@ import java.util.Map;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
-@Entity
+@Entity @Table(name = "notas_fiscais")
 public class NotaFiscal {
 
     @Id
@@ -18,14 +18,14 @@ public class NotaFiscal {
     @ManyToOne(fetch = LAZY)
     private Cliente cliente;
 
-    @ManyToMany
-    private List<Produto> produtos;
+    @OneToOne
+    private Compra compra;
 
     private BigDecimal valorFinal;
 
-    public NotaFiscal(Cliente cliente, List<Produto> produtos) {
+    public NotaFiscal(Cliente cliente, Compra compra) {
         this.cliente = cliente;
-        this.produtos = produtos;
+        this.compra = compra;
     }
 
     NotaFiscal() {}
@@ -34,12 +34,12 @@ public class NotaFiscal {
         return id;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Compra getCompra() {
+        return compra;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public Cliente getCliente() {
+        return cliente;
     }
 
     public void setValorFinal(BigDecimal valorFinal) {

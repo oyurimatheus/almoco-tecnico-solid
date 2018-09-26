@@ -4,10 +4,11 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
 
+import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
-@Entity
+@Entity @Table(name = "compras")
 public class Compra {
 
     @Id
@@ -20,9 +21,13 @@ public class Compra {
     @OneToMany
     private List<Produto> produtos;
 
-    public Compra(Cliente cliente, List<Produto> produtos) {
+    @Enumerated(STRING)
+    private CompraStatus status;
+
+    public Compra(Cliente cliente, List<Produto> produtos, CompraStatus status) {
         this.cliente = cliente;
         this.produtos = produtos;
+        this.status = CompraStatus.AGUARDANDO;
     }
 
     Compra() {}
@@ -37,5 +42,9 @@ public class Compra {
 
     public List<Produto> getProdutos() {
         return produtos;
+    }
+
+    public void finaliza() {
+        status = CompraStatus.FINALIZADA;
     }
 }

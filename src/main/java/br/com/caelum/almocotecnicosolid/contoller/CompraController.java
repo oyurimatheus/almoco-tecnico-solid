@@ -1,18 +1,14 @@
 package br.com.caelum.almocotecnicosolid.contoller;
 
-
 import br.com.caelum.almocotecnicosolid.domain.Compra;
 import br.com.caelum.almocotecnicosolid.domain.NotaFiscal;
 import br.com.caelum.almocotecnicosolid.domain.Produto;
 import br.com.caelum.almocotecnicosolid.repository.CompraRepository;
 import br.com.caelum.almocotecnicosolid.repository.EstoqueRepository;
 import br.com.caelum.almocotecnicosolid.repository.NotaFiscalRepository;
-
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,9 +34,10 @@ public class CompraController {
     @GetMapping("/{id}")
     public String processaCompra(@PathVariable("id") Long id) {
         Compra compra = compraRepository.findById(id).get();
+        compra.finaliza();
 
         // cria e salva a nota fiscal
-        NotaFiscal notaFiscal = new NotaFiscal(compra.getCliente(), compra.getProdutos());
+        NotaFiscal notaFiscal = new NotaFiscal(compra.getCliente(), compra);
 
         final BigDecimal totalCompra = compra.getProdutos().stream()
                 .map(Produto::getPreco)
