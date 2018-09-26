@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Cadastro de produtos</title>
+</head>
+<body>
+
+    <form action="/produtos" method="post">
+        <label for="nome">Nome:</label>
+        <input id="nome" type="text" name="nome"/>
+        <label for="preco">Preco:</label>
+        <input id="preco" type="number" name="preco"/>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+</body>
+</html>

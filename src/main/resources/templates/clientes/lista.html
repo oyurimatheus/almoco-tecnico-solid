@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Lista de clientes</title>
+</head>
+<body>
+
+<h1>Há de haver uma listagem</h1>
+<table>
+    <tr data-th-each="cliente : ${clientes}">
+        <td data-th-text="${cliente.nome}">...</td>
+        <td data-th-text="${cliente.email}">...</td>
+    </tr>
+</table>
+</body>
+</html>
