@@ -27,11 +27,6 @@ public class Compra {
 
     Compra() {}
 
-    public NotaFiscal emiteNotaFiscal() {
-
-        return new NotaFiscal(cliente, produtos);
-    }
-
     public Long getId() {
         return id;
     }

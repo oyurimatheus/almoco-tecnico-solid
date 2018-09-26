@@ -1,6 +1,7 @@
 package br.com.caelum.almocotecnicosolid.domain;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,8 @@ public class NotaFiscal {
     @ManyToMany
     private List<Produto> produtos;
 
+    private BigDecimal valorFinal;
+
     public NotaFiscal(Cliente cliente, List<Produto> produtos) {
         this.cliente = cliente;
         this.produtos = produtos;
@@ -37,5 +40,9 @@ public class NotaFiscal {
 
     public List<Produto> getProdutos() {
         return produtos;
+    }
+
+    public void setValorFinal(BigDecimal valorFinal) {
+        this.valorFinal = valorFinal;
     }
 }
